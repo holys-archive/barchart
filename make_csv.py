@@ -3,6 +3,7 @@
 import csv
 import os
 import re
+import sys
 
 
 def make_csv(csv_file=None, bench_type="redis"):
@@ -34,7 +35,7 @@ def parse_md(md_file=None, bench_type="redis"):
 
     if not os.path.exists(md_file):
         print "No markdown file found."
-        return
+        sys.exit()
     rgl = re.compile("```(\w*?)\n(.+?)```", re.S)
 
     with open(md_file) as f:
