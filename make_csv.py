@@ -16,7 +16,7 @@ def make_csv(csv_file=None, bench_type="redis"):
     with open(csv_file, 'w') as f:
         writer = csv.writer(f)
         if bench_type == "redis":
-            header = ["DB", "GET", "SET", "INCR", "LPUSH", "LPOP", "LPUSH",
+            header = ["DB", "SET", "GET", "INCR", "LPUSH", "LPOP", "LPUSH",
                    "LRANGE_100", "LRANGE_300", "LRANGE_500", "LRANGE_600", "MSET"]
             writer.writerow(header)
         elif bench_type == "ledis":
@@ -56,6 +56,8 @@ def parse_md(md_file=None, bench_type="redis"):
                     db_type = "ledisdb_rocksdb"
                 if db_type == "lmdb":
                     db_type = "ledisdb_lmdb"
+                if db_type == "boltdb":
+                    db_type = "ledisdb_boltdb"
                 cmd_list.append(db_type)
 
                 _cmds = db[1].split("\n")
